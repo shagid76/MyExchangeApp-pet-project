@@ -69,22 +69,22 @@ public class ExchangeService {
 
     @Transactional
     public void exchange(ExchangeRequestDTO exchangeRequestDTO, Integer userId) {
-        Optional<WalletAmount> walletAmount = walletAmountRepository.findByCurrencyAndUserId(exchangeRequestDTO.getFromCurrency(), userId);
+        WalletAmount walletAmount = walletAmountRepository.findByCurrencyAndUserId(exchangeRequestDTO.getFromCurrency(), userId)
+                .orElseThrow(() -> new IllegalArgumentException("Insufficient funds or wallet not found for currency: " + exchangeRequestDTO.getFromCurrency()));
         String key = exchangeRequestDTO.getFromCurrency() + "-" + exchangeRequestDTO.getToCurrency();
-        if (walletAmount.isEmpty()) {
-            throw new IllegalArgumentException("Insufficient funds or wallet not found for currency: " + exchangeRequestDTO.getFromCurrency());
-        }
-        if (walletAmount.get().getAmount() >= exchangeRequestDTO.getAmount()) {
-            if (!exchangeRequestDTO.getToCurrency().equals(exchangeRequestDTO.getFromCurrency())) {
-                double exchangeAmount = exchangeRequestDTO.getAmount() * convert.get(key);
-                walletAmountRepository.updateAmountByCurrencyAndUserId(walletAmount.get().getAmount() - exchangeRequestDTO.getAmount(), exchangeRequestDTO.getFromCurrency(), userId);
-                addReplenishment(userId, exchangeRequestDTO.getToCurrency(), exchangeAmount);
-            } else {
-                throw new IllegalArgumentException("You can't exchange same currencies.");
-            }
-        } else {
+        validateExchangeRequest(exchangeRequestDTO, walletAmount);
+        double exchangeAmount = exchangeRequestDTO.getAmount() * convert.get(key);
+        walletAmountRepository.updateAmountByCurrencyAndUserId(walletAmount.getAmount() - exchangeRequestDTO.getAmount(), exchangeRequestDTO.getFromCurrency(), userId);
+        addReplenishment(userId, exchangeRequestDTO.getToCurrency(), exchangeAmount);
+    }
+
+    private void validateExchangeRequest(ExchangeRequestDTO exchangeRequestDTO, WalletAmount walletAmount) {
+        if (walletAmount.getAmount() <= exchangeRequestDTO.getAmount()) {
             throw new IllegalArgumentException("You are trying to exchange more currencies than you have.");
         }
-
+        if (exchangeRequestDTO.getToCurrency().equals(exchangeRequestDTO.getFromCurrency())) {
+            throw new IllegalArgumentException("You can't exchange same currencies.");
+        }
     }
+
 }
