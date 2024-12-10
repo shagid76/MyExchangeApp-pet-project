@@ -77,7 +77,7 @@ public class ExchangeController {
 
     @PostMapping("/exchange/{id}")
     public String postExchange(@PathVariable("id") Integer id,
-                               @ModelAttribute("exchangeRequest") ExchangeRequestDTO exchangeRequestDTO,
+                               @ModelAttribute("exchangeRequest") @Valid ExchangeRequestDTO exchangeRequestDTO,
                                BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {

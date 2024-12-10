@@ -18,7 +18,7 @@
         </select>
         <br>
         <label for="amount">Enter the amount of currency you want to change:</label>
-        <input type="number" id="amount" name="walletAmountOne.amount" th:field="*{exchangeRequest.amount}" placeholder="Enter amount" />
+        <input min ="1" type="number" id="amount" name="walletAmountOne.amount" th:field="*{exchangeRequest.amount}" placeholder="Enter amount" />
         <br>
         <label for="currencyTo">Select the currency to exchange:</label>
         <select id="currencyTo" name="exchangeRequest.currency" th:field="*{exchangeRequest.toCurrency}">
