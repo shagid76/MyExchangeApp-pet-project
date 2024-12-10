@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Exchange</title>
+    <link rel="stylesheet" href="/static/exchange.css">
+</head>
+<body>
+<div class="divExchange">
+    <h1>Exchange</h1>
+    <hr>
+    <form method="post" th:action="@{/exchange/{id}(id=${id})}">
+        <label for="currencyFrom">Select the currency to exchange from:</label>
+        <select id="currencyFrom" name="exchangeRequest.currency" th:field="*{exchangeRequest.fromCurrency}">
+            <option th:each="currency : ${walletAmountList}"
+                    th:value="${currency.currency}"
+                    th:text="${currency.currency}"></option>
+        </select>
+        <br>
+        <label for="amount">Enter the amount of currency you want to change:</label>
+        <input type="number" id="amount" name="walletAmountOne.amount" th:field="*{exchangeRequest.amount}" placeholder="Enter amount" />
+        <br>
+        <label for="currencyTo">Select the currency to exchange:</label>
+        <select id="currencyTo" name="exchangeRequest.currency" th:field="*{exchangeRequest.toCurrency}">
+            <option th:each="currency : ${T(us.yarik.ExchangeApp.model.Currency).values()}"
+                    th:value="${currency}"
+                    th:text="${currency}"></option>
+        </select>
+        <div th:if="${error}">
+            <p style="color: red;" th:text="${error}"></p>
+        </div>
+        <br>
+        <hr>
+        <input class="submitButton" type="submit" value="Do exchange" />
+    </form>
+    <hr>
+    <a th:href="@{/replenishment/{id}(id=${id})}"><h2>Need replenishment?</h2></a>
+</div>
+</body>
+</html>

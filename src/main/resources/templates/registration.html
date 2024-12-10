@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="/static/registration.css">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Registration</title>
+</head>
+<body>
+<div class="divRegistrationForm">
+    <h1>ExchangeApp</h1>
+    <hr>
+    <h2>Registration</h2>
+    <form class="registrationForm" action="#" th:action="@{/registration}" th:object="${user}" method="post">
+        <label for="name"><h4>Name:</h4></label>
+        <input type="text" id="name" th:field="*{name}" />
+        <br>
+        <label for="password"><h4>Password:</h4></label>
+        <input type="password" id="password" th:field="*{password}" />
+        <br>
+        <div th:if="${#fields.hasErrors('password')}">
+            <span th:errors="*{password}"></span>
+        </div>
+        <div class="errorMassage" th:if="${error}">
+            <p style="color: red;" th:text="${error}"></p>
+        </div>
+        <button class="submitButton" type="submit">Create</button>
+    </form>
+    <hr>
+    <h3><a href="/login">You have account? <br>Login</a></h3>
+</div>
+
+</body>
+</html>

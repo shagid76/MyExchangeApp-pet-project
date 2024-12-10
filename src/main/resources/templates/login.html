@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="/static/login.css">
+</head>
+<body>
+<div class="divLoginForm">
+    <h1>ExchangeApp</h1>
+    <hr>
+    <h2>Login</h2>
+    <form class="loginForm" th:action="@{/login}" method="post" th:object="${user}">
+        <label for="name"><h4>Name:</h4></label>
+        <input type="text" id="name" th:field="*{name}"/>
+        <br>
+        <label for="password"><h4>Password:</h4></label>
+        <input type="password" id="password" th:field="*{password}">
+        <br>
+        <div class="errorMassage" th:if="${param.error}">
+            <p style="color: red;">Invalid username or password.</p>
+        </div>
+        <button class="submitButton" th:href="@{/balance/{id}(id = ${user.id})}" type="submit">Login</button>
+
+    </form>
+    <hr>
+    <h3><a href="/registration">You don't have account? <br>Registration</a></h3>
+
+</div>
+</body>
+</html>

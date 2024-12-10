@@ -1,0 +1,70 @@
+
+.divLoginForm{
+    max-height: fit-content;
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    border-radius: 5%;
+    border:0.5px solid white;
+}
+.submitButton{
+    height: 35px;
+    width: 90%;
+    margin-right: 5%;
+    margin-left: 5%;
+    border-radius: 15px;
+    font-size: 20pt;
+    background-color: #F0C948;
+    position: relative;
+    margin-top: 30px;
+}
+input{
+    background-color: rgb(26, 24, 34);
+    text-align: center;
+    color: white;
+}
+.errorMassage {
+    text-align: center;
+    height: 20px;
+    line-height: 20px;
+    visibility: hidden;
+}
+.errorMassage p {
+    color: red;
+    visibility: visible;
+}
+.loginForm{
+    text-align: center;
+}
+h1{
+    margin: 50px;
+    color: #F0C948;
+}
+h2{
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 35px;
+}
+
+h3{
+    margin-top: 10%;
+    text-align: center;
+    color: #F0C948;
+    position: relative;
+}
+a{
+    color: #F0C948;
+    text-decoration: none;
+}
+h4{
+    margin: 0px;
+}
+body{
+    background-color: rgb(26, 24, 34);
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+}
+p{
+    margin: 0px;
+}

@@ -1,0 +1,46 @@
+body {
+    background-color: rgb(26, 24, 34);
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+hr{
+    background-color: white;
+}
+.divBalance{
+    max-height: fit-content;
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    border: 0.5px solid white;
+    border-radius: 5%;
+    text-align: center;
+}
+span{
+    color: #F0C948;
+}
+.walletContent{
+    color: #F0C948;
+}
+.nullWallet{
+    color: #F0C948;
+}
+.logoutButton{
+    height: 35px;
+    width: 90%;
+    margin: 5% 5% 10% 5%;
+        border-radius: 15px;
+    font-size: 20pt;
+    background-color: #F0C948;
+    position: relative ;
+}
+.balanceArticle{
+    color: #F0C948;
+}
+h1{
+    margin: 50px;
+}

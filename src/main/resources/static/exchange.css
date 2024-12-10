@@ -1,0 +1,49 @@
+body{
+    background-color: rgb(26, 24, 34);
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+}
+input{
+    background-color: rgb(26, 24, 34);
+    text-align: center;
+    color: white;
+}
+h1{
+    margin: 50px;
+    text-align: center;
+    color: #F0C948;
+}
+.divExchange{
+    max-height: fit-content;
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+    border-radius: 5%;
+    border:0.5px solid white;
+}
+.submitButton{
+    height: 35px;
+    width: 70%;
+    margin: 5% 5% 5% 15%;
+    border-radius: 15px;
+    font-size: 20pt;
+    background-color: #F0C948;
+    position: relative;
+    color: black;
+}
+select{
+    background-color: rgb(26, 24, 34);
+    color: white;
+}
+option{
+    background-color: rgb(26, 24, 34);
+    color: white;
+}
+a{
+    color: #F0C948;
+    text-decoration: none;
+}
+h2{
+    text-align: center;
+}
