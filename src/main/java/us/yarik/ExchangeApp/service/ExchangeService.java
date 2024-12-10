@@ -79,7 +79,7 @@ public class ExchangeService {
     }
 
     private void validateExchangeRequest(ExchangeRequestDTO exchangeRequestDTO, WalletAmount walletAmount) {
-        if (walletAmount.getAmount() <= exchangeRequestDTO.getAmount()) {
+        if (walletAmount.getAmount() < exchangeRequestDTO.getAmount()) {
             throw new IllegalArgumentException("You are trying to exchange more currencies than you have.");
         }
         if (exchangeRequestDTO.getToCurrency().equals(exchangeRequestDTO.getFromCurrency())) {
