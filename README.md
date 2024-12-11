@@ -13,6 +13,6 @@
 - 💰 Make replenishments and exchanges
 
 ## Screenshots
-!(login.png)
-!(balance.png)
-!(exchange.png)
+![](login.png)
+![](balance.png)
+![](exchange.png)
