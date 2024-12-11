@@ -6,7 +6,7 @@
   - 🔒 Security
   - 📖 Data, Validation
   - 🐘 PostgreSQL
-- **HTML, CSS **
+- HTML, CSS 
 
 ## Possibilities
 - ⚙️ Create account
