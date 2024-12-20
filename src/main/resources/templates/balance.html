@@ -3,40 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Balance</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/balance.css">
 </head>
 <body>
-<div class="divBalance">
-<div th:if="${user != null}">
-    <h1 class="balanceArticle">Balance</h1>
-    <hr>
-   <h2>Hello, <span th:text="${user.name}"></span></h2>
-    <hr>
-</div>
-<div>
-    <h2>Your wallet</h2>
-    <div class="walletContent" th:if="${walletAmounts != null and walletAmounts.size() > 0}">
-        <ul>
-            <li th:each="walletAmount : ${walletAmounts}" th:if="${walletAmount.amount > 0}">
-                <p  th:text="${walletAmount.currency + ' ' + walletAmount.amount}"></p>
-            </li>
-        </ul>
+<section class="name">
+    <div class="container">
+        <div class="row">
+            <div class="col-12"></div>
+        </div>
+        <div class="divBalance">
+            <div th:if="${user != null}">
+                <h1 class="balanceArticle">Balance</h1>
+                <hr>
+                <h2>Hello, <span th:text="${user.name}"></span></h2>
+                <hr>
+            </div>
+            <div>
+                <h2>Your wallet</h2>
+                <div class="walletContent" th:if="${walletAmounts != null and walletAmounts.size() > 0}">
+                    <ul>
+                        <li th:each="walletAmount : ${walletAmounts}" th:if="${walletAmount.amount > 0}">
+                            <p th:text="${walletAmount.currency + ' ' + walletAmount.amount}"></p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="nullWallet" th:if="${walletAmounts == null or walletAmounts.size() == 0}">
+                    <div>Your wallet is empty.</div>
+                </div>
+                <hr>
+                <a th:href="@{/exchange/{id}(id = ${user.id})}">Exchange?</a>
+                <br>
+                <hr>
+                <a th:href="@{/replenishment/{id}(id = ${user.id})}">Need replenishment?</a>
+                <br>
+                <hr>
+                <form action="/logout" method="post">
+                    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+                    <button class="logoutButton" type="submit">Logout</button>
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="nullWallet" th:if="${walletAmounts == null or walletAmounts.size() == 0}">
-        <div>Your wallet is empty.</div>
-    </div>
-    <hr>
-    <a th:href="@{/exchange/{id}(id = ${user.id})}">Exchange?</a>
-<br>
-    <hr>
-<a th:href="@{/replenishment/{id}(id = ${user.id})}">Need replenishment?</a>
-<br>
-    <hr>
-<form action="/logout" method="post">
-    <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
-    <button class="logoutButton" type="submit">Logout</button>
-</form>
-</div>
-</div>
+</section>
 </body>
 </html>
